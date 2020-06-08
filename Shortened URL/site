@@ -1,0 +1,15 @@
+from flask import Flask,redirect
+app = Flask(__name__)
+
+all_data_dict = {'gab': "https://www.w3schools.com/python/python_dictionaries.asp", 'gg': "https://realpython.com/"}
+
+
+@app.route('/')
+def main_page():
+
+    return "main page"
+
+@app.route('/<adress>')
+def my_prog(adress):
+
+    return redirect(all_data_dict[adress])
