@@ -4,8 +4,15 @@ import random
 import string
 
 
-NEW_URL_LENGTH = 8
 ALL_DATA_PATH = 'all_data.txt'
+
+def url_length():
+    new_url_length=3
+    num=len(import_data_to_dict())//26**3
+    while num :
+        new_url_length+=1
+        num=num//26
+    return new_url_length
 
 def create_db():
     if not os.path.exists(ALL_DATA_PATH):
@@ -38,7 +45,7 @@ def get_origin_url(shorten_url):
 
 def create_shortened_url():
     letters = string.ascii_lowercase
-    shorten_url=''.join(random.choice(letters) for i in range(NEW_URL_LENGTH))
+    shorten_url=''.join(random.choice(letters) for i in range(url_length()))
     if shorten_url in import_data_to_dict().values():
         return create_shortened_url()
     return shorten_url
